@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import styles from './app.module.css';
+import Board from '../board/board';
+import './app.css';
 
 export const App: FC = () => {
   return (
-    <div className={styles.container}>
+    <div className="app">
+      <Board />
     </div>
   );
-}
+};

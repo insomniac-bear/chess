@@ -1,10 +1,7 @@
-import type { FC } from 'react';
-import styles from './board.module.css';
+import { FC } from 'react';
 
-export const Board: FC = () => {
-  return (
-    <div className={styles.container}>
-
-    </div>
-  );
+const Board: FC = () => {
+  return <div className="board"></div>;
 };
+
+export default Board;
