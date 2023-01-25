@@ -1,11 +1,27 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Board from '../board/board';
+import BoardModel from '../../models/Board.model';
 import './app.css';
 
 export const App: FC = () => {
+  const [ board, setBoard ] = useState(new BoardModel());
+
+  useEffect(() => {
+    restart();
+  }, []);
+
+  function restart() {
+    const newBoard = new BoardModel();
+    newBoard.initCells();
+    setBoard(newBoard);
+  };
+
   return (
     <div className="app">
-      <Board />
+      <Board
+        board={board}
+        setBoard={setBoard}
+      />
     </div>
   );
 };
