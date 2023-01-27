@@ -34,3 +34,14 @@
 .white {
   background-color: #ffe9dc;
 }
+
+.selected {
+  background-color: aquamarine;
+}
+
+.available {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: brown;
+}

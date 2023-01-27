@@ -1,3 +1,5 @@
+// 32:57
+
 import { FC, useEffect, useState } from 'react';
 import Board from '../board/board';
 import BoardModel from '../../models/Board.model';
