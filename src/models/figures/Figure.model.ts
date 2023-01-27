@@ -1,3 +1,30 @@
-class Figure {}
+import { nanoid } from 'nanoid';
+import { Colors } from '../types';
+import logo from '../../images/black-king.svg';
+import CellModel from '../Cell.model';
+import { FigureNames } from '../types';
+
+class Figure {
+  color: Colors;
+  logo: typeof logo | null;
+  cell: CellModel;
+  name: FigureNames;
+  id: string;
+
+  constructor(color: Colors, cell: CellModel) {
+    this.color = color;
+    this.cell = cell;
+    this.cell.figure = this;
+    this.logo = null;
+    this.name = FigureNames.FIGURE;
+    this.id = nanoid();
+  }
+
+  canMove(target: CellModel): boolean {
+    return true;
+  }
+
+  moveFigure(target: CellModel) {}
+}
 
 export default Figure;

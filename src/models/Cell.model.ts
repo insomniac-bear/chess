@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import Board from './Board.model';
-import { Colors } from './Color.types';
+import { Colors } from './types';
 import Figure from './figures/Figure.model';
 
 class CellModel {
