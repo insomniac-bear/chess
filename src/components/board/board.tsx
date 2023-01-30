@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useState, useEffect } from 'react';
 import Cell from '../cell/cell';
 import IBoardProps from './board.props';
 import CellModel from '../../models/Cell.model';
@@ -11,25 +11,40 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
   };
 
   const onClick = (cell: CellModel) => {
-    if (cell.figure) {
+    if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+      selectedCell.moveFigure(cell);
+      setSelectedCell(null);
+      updateBoard();
+    } else {
       setSelectedCell(cell);
     }
-  }
+  };
 
-  return <div className="board">
-    {board.cells.map((row, index) =>
-    <Fragment key={index}>
-      {row.map(cell =>
-        <Cell
-          onHandleClick={onClick}
-          cell={cell}
-          key={cell.id}
-          isSelected={isSelected(cell.x, cell.y)}
-        ></Cell>
-      )}
-    </Fragment>
-    )}
-  </div>;
+  const highlightCells = () => {
+    board.highlightCells(selectedCell);
+    updateBoard();
+  };
+
+  const updateBoard = () => {
+    const newBoard = board.getCopiedBoard();
+    setBoard(newBoard);
+  };
+
+  useEffect(() => {
+    highlightCells();
+  }, [selectedCell]);
+
+  return (
+    <div className="board">
+      {board.cells.map((row, index) => (
+        <Fragment key={index}>
+          {row.map((cell) => (
+            <Cell onHandleClick={onClick} cell={cell} key={cell.id} isSelected={isSelected(cell.x, cell.y)}></Cell>
+          ))}
+        </Fragment>
+      ))}
+    </div>
+  );
 };
 
 export default Board;

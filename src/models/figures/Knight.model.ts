@@ -10,6 +10,13 @@ class KnightModel extends Figure {
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.KNIGHT;
   }
+
+  canMove(target: CellModel): boolean {
+    if (!super.canMove(target)) {
+      return false;
+    }
+    return true;
+  }
 }
 
 export default KnightModel;

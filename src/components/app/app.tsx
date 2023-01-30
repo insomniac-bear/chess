@@ -1,4 +1,5 @@
-// 32:57
+// 49.20
+// Баг с перескоком при первом ходе
 
 import { FC, useEffect, useState } from 'react';
 import Board from '../board/board';

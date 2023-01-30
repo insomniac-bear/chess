@@ -1,3 +1,4 @@
+import CellModel from './Cell.model';
 import Cell from './Cell.model';
 import BishopModel from './figures/Bishop.model';
 import KingModel from './figures/King.model';
@@ -7,7 +8,7 @@ import QueenModel from './figures/Queen.model';
 import RookModel from './figures/Rook.model';
 import { Colors } from './types';
 
-class Board {
+class BoardModel {
   cells: Cell[][] = [];
 
   public initCells() {
@@ -76,6 +77,25 @@ class Board {
     this.addQueens();
     this.addRooks();
   }
+
+  public highlightCells(selectedCell: CellModel | null) {
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+
+      for (let j = 0; j < row.length; j++) {
+        const target = row[j];
+
+        target.available = Boolean(selectedCell?.figure?.canMove(target));
+      }
+    }
+  }
+
+  public getCopiedBoard(): BoardModel {
+    const newBoard = new BoardModel();
+    newBoard.cells = this.cells;
+
+    return newBoard;
+  }
 }
 
-export default Board;
+export default BoardModel;
