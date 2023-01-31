@@ -22,8 +22,16 @@ class CellModel {
     this.id = nanoid();
   }
 
-  private isEmpty() {
+  public isEmpty() {
     return this.figure === null;
+  }
+
+  public isEnemy(target: CellModel): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+
+    return false;
   }
 
   public isEmptyVertical(target: CellModel): boolean {

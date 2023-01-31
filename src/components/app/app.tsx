@@ -1,5 +1,5 @@
-// 49.20
-// Баг с перескоком при первом ходе
+// 55.58
+// Отрефачить условия перемещения пешки
 
 import { FC, useEffect, useState } from 'react';
 import Board from '../board/board';

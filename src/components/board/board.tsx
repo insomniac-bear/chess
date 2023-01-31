@@ -32,7 +32,7 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
 
   useEffect(() => {
     highlightCells();
-    // console.log(isSelected)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCell]);
 
   return (
@@ -44,8 +44,7 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
               onHandleClick={onClick}
               cell={cell}
               key={cell.id}
-              // isSelected={isSelected(cell.x, cell.y)}
-              isSelected={selectedCell?.x === cell.x && selectedCell?.y === cell.y}
+              isSelected={isSelected(cell.x, cell.y)}
             />
           ))}
         </Fragment>
