@@ -32,6 +32,7 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
 
   useEffect(() => {
     highlightCells();
+    // console.log(isSelected)
   }, [selectedCell]);
 
   return (
@@ -39,7 +40,13 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
       {board.cells.map((row, index) => (
         <Fragment key={index}>
           {row.map((cell) => (
-            <Cell onHandleClick={onClick} cell={cell} key={cell.id} isSelected={isSelected(cell.x, cell.y)}></Cell>
+            <Cell
+              onHandleClick={onClick}
+              cell={cell}
+              key={cell.id}
+              // isSelected={isSelected(cell.x, cell.y)}
+              isSelected={selectedCell?.x === cell.x && selectedCell?.y === cell.y}
+            />
           ))}
         </Fragment>
       ))}

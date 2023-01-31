@@ -18,7 +18,7 @@ class CellModel {
     this.color = color;
     this.figure = figure;
     this.board = board;
-    this.available = true;
+    this.available = false;
     this.id = nanoid();
   }
 
@@ -72,7 +72,7 @@ class CellModel {
     const dx = this.x < target.x ? 1 : -1;
 
     for (let i = 1; i < absY; i++) {
-      if (!this.board.getCell(this.x + dx * 1, this.y + dy * 1).isEmpty()) {
+      if (!this.board.getCell(this.x + dx * i, this.y + dy * i).isEmpty()) {
         return false;
       }
     }
