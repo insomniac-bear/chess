@@ -1,18 +1,18 @@
 import { nanoid } from 'nanoid';
 import Board from './Board.model';
 import { Colors } from './types';
-import Figure from './figures/Figure.model';
+import FigureModel from './figures/Figure.model';
 
 class CellModel {
   readonly x: number;
   readonly y: number;
   readonly color: Colors;
-  figure: Figure | null;
+  figure: FigureModel | null;
   board: Board;
   available: boolean; // Можешь ли переместиться на эту ячейку
   id: string; // Для реакт ключей
 
-  constructor(board: Board, x: number, y: number, color: Colors, figure: Figure | null) {
+  constructor(board: Board, x: number, y: number, color: Colors, figure: FigureModel | null) {
     this.x = x;
     this.y = y;
     this.color = color;
@@ -87,14 +87,26 @@ class CellModel {
     return true;
   }
 
-  private setFigure(figure: Figure) {
+  private setFigure(figure: FigureModel) {
     this.figure = figure;
     this.figure.cell = this;
+  }
+
+  //  Перенести метод в класс доски!!!
+  addLostFigure(figure: FigureModel) {
+    figure.color === Colors.BLACK
+      ? this.board.lostBlackFigures.push(figure)
+      : this.board.lostWhiteFigures.push(figure);
   }
 
   moveFigure(target: CellModel) {
     if (this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
+
+      if(target.figure) {
+        this.addLostFigure(target.figure);
+      }
+
       target.setFigure(this.figure);
       this.figure = null;
     }

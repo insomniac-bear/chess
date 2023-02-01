@@ -1,6 +1,7 @@
 import CellModel from './Cell.model';
 import Cell from './Cell.model';
 import BishopModel from './figures/Bishop.model';
+import FigureModel from './figures/Figure.model';
 import KingModel from './figures/King.model';
 import KnightModel from './figures/Knight.model';
 import PawnModel from './figures/Pawn.model';
@@ -10,6 +11,8 @@ import { Colors } from './types';
 
 class BoardModel {
   cells: Cell[][] = [];
+  lostBlackFigures: FigureModel[] = [];
+  lostWhiteFigures: FigureModel[] = [];
 
   public initCells() {
     for (let i = 0; i < 8; i++) {
@@ -93,6 +96,8 @@ class BoardModel {
   public getCopiedBoard(): BoardModel {
     const newBoard = new BoardModel();
     newBoard.cells = this.cells;
+    newBoard.lostBlackFigures = this.lostBlackFigures;
+    newBoard.lostWhiteFigures = this.lostWhiteFigures;
 
     return newBoard;
   }

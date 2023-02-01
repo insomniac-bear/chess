@@ -1,3 +1,11 @@
-class Player {}
+import { Colors } from './types';
 
-export default Player;
+class PlayerModel {
+  color: Colors;
+
+  constructor(color: Colors) {
+    this.color = color;
+  }
+}
+
+export default PlayerModel;

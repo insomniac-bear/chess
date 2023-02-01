@@ -3,7 +3,7 @@ import Cell from '../cell/cell';
 import IBoardProps from './board.props';
 import CellModel from '../../models/Cell.model';
 
-const Board: FC<IBoardProps> = ({ board, setBoard }) => {
+const Board: FC<IBoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
   const [selectedCell, setSelectedCell] = useState<CellModel | null>(null);
 
   const isSelected = (x: number, y: number) => {
@@ -13,10 +13,13 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
   const onClick = (cell: CellModel) => {
     if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
       selectedCell.moveFigure(cell);
+      swapPlayer()
       setSelectedCell(null);
       updateBoard();
     } else {
-      setSelectedCell(cell);
+      if (cell.figure?.color === currentPlayer?.color) {
+        setSelectedCell(cell);
+      }
     }
   };
 
@@ -36,19 +39,22 @@ const Board: FC<IBoardProps> = ({ board, setBoard }) => {
   }, [selectedCell]);
 
   return (
-    <div className="board">
-      {board.cells.map((row, index) => (
-        <Fragment key={index}>
-          {row.map((cell) => (
-            <Cell
-              onHandleClick={onClick}
-              cell={cell}
-              key={cell.id}
-              isSelected={isSelected(cell.x, cell.y)}
-            />
-          ))}
-        </Fragment>
-      ))}
+    <div>
+      <h3>Текущий игрок: {currentPlayer?.color}</h3>
+      <div className="board">
+        {board.cells.map((row, index) => (
+          <Fragment key={index}>
+            {row.map((cell) => (
+              <Cell
+                onHandleClick={onClick}
+                cell={cell}
+                key={cell.id}
+                isSelected={isSelected(cell.x, cell.y)}
+              />
+            ))}
+          </Fragment>
+        ))}
+      </div>
     </div>
   );
 };

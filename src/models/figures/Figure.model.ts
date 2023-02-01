@@ -4,7 +4,7 @@ import logo from '../../images/black-king.svg';
 import CellModel from '../Cell.model';
 import { FigureNames } from '../types';
 
-class Figure {
+class FigureModel {
   color: Colors;
   logo: typeof logo | null;
   cell: CellModel;
@@ -35,4 +35,4 @@ class Figure {
   moveFigure(target: CellModel) {}
 }
 
-export default Figure;
+export default FigureModel;
