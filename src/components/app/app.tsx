@@ -1,6 +1,9 @@
 // 1.04.36
 // Реализовать ход короля
 // Отрефачить условия перемещения пешки
+// Общий таймер на ход
+// Сделать подсветку фигур того игрока, который сейчас ходит
+// Подумать над D'n'D
 
 import { FC, useEffect, useState } from 'react';
 import Board from '../board/board';
@@ -9,12 +12,14 @@ import './app.css';
 import PlayerModel from '../../models/Player.model';
 import { Colors } from '../../models/types';
 import LostFigures from '../lost-figures/lost-figures';
+import Timer from '../timer/timer';
 
 export const App: FC = () => {
   const [board, setBoard] = useState<BoardModel>(new BoardModel());
   const [currentPlayer, setCurrentPlayer] = useState<PlayerModel | null>(null);
-  const [whitePlayer, setWhitePlayer] = useState<PlayerModel>(new PlayerModel(Colors.WHITE));
-  const [blackPlayer, setBlackPlayer] = useState<PlayerModel>(new PlayerModel(Colors.BLACK));
+
+  const whitePlayer = new PlayerModel(Colors.WHITE);
+  const blackPlayer = new PlayerModel(Colors.BLACK);
 
   useEffect(() => {
     restart();
@@ -35,6 +40,10 @@ export const App: FC = () => {
 
   return (
     <div className="app">
+      <Timer
+        restart={restart}
+        currentPlayer={currentPlayer}
+      />
       <Board
         board={board}
         setBoard={setBoard}
