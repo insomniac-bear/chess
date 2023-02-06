@@ -1,0 +1,9 @@
+.container {
+  width: 64px;
+  height: 64px;
+  background-color: #ffe9dc;
+}
+
+.container_black {
+  background-color: #dea483;
+}
