@@ -1,3 +1,3 @@
-import { TRow } from './row.types';
+import type { TRow } from './row.types';
 
 export type TBoard = TRow[];

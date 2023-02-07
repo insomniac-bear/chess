@@ -38,6 +38,7 @@
         "exports": "always-multiline",
         "functions": "never"
       }
-    ]
+    ],
+    "@typescript-eslint/member-delimiter-style": "off"
   }
 }
