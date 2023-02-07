@@ -19,7 +19,6 @@ export const extractFigure = (number: number): IExtractFigure | undefined => {
   }
   const color = Math.floor(number / 10) === 1 ? 'black' : 'white';
   const figureNum = number % 10;
-  console.log(figureNum);
 
   const figures: TFigure[] = [
     'Pawn',
