@@ -1,5 +1,6 @@
-import { ICellProps } from "../cell/cell.props";
+import { TCellValue } from '../types/cell.types';
 
 export interface IRowProps {
-  row: ICellProps[];
+  row: TCellValue[];
+  rowNumber: number;
 }

@@ -1,6 +1,6 @@
-import { TCell } from '../types/cell.types';
+import { TCellValue } from '../types/cell.types';
 
 export interface ICellProps {
   color: 'white' | 'black';
-  value: TCell;
+  value: TCellValue;
 }

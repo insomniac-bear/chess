@@ -1,13 +1,31 @@
-import { FC } from 'react';
+import type { FC } from 'react';
+import styles from './row.module.css';
 import { Cell } from '../cell';
-import { IRowProps } from './row.props';
+import type { IRowProps } from './row.props';
+import { isOdd } from '../../utils';
 
-export const Row: FC<IRowProps> = ({ row }) => {
-  return(
-    <ul>
-      {
-        row.map(cell => <Cell color={cell.color} />)
-      }
+export const Row: FC<IRowProps> = ({ row, rowNumber }) => {
+  let calculatedColor: 'black' | 'white';
+
+  return (
+    <ul className={styles.container}>
+      {row.map((cell, index) => {
+        if (isOdd(rowNumber)) {
+          if (isOdd(index)) {
+            calculatedColor = 'white';
+          } else {
+            calculatedColor = 'black';
+          }
+        } else {
+          if (isOdd(index)) {
+            calculatedColor = 'black';
+          } else {
+            calculatedColor = 'white';
+          }
+        }
+
+        return <Cell key={index} color={calculatedColor} value={cell} />;
+      })}
     </ul>
   );
-}
+};
