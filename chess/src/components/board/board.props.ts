@@ -14,8 +14,7 @@
  * 26 - Черный король
  */
 
-import { TCellValue } from '../types/cell.types';
-import { TRow } from '../types/row.types';
+import type { TRow } from '../../types/row.types';
 
 export interface IBoard {
   board: TRow[];

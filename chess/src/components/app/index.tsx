@@ -1,13 +1,15 @@
 // Реализуем отображение доски
-
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Board } from '../board';
-import { mockBoard } from '../../mockData/board';
+import { BoardModel } from '../../models/board/board.model';
 
 export const App: FC = () => {
+  const board = new BoardModel();
+  board.initialBoard('chess');
+
   return (
     <div>
-      <Board board={mockBoard} />
+      <Board board={board.getBoard()} />
     </div>
   );
 };

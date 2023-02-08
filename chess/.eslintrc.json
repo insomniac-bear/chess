@@ -11,6 +11,7 @@
       "jsx": true
     },
     "sourceType": "module",
+    "tsconfigRootDir": "./chess",
     "project": ["./tsconfig.json"]
   },
   "plugins": ["react"],
