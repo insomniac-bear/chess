@@ -10,15 +10,22 @@ import { useAppSelector as useSelector, useAppDispatch as useDispatch } from '..
 import { setSelectedFigure } from '../../services/slices/active-game';
 
 export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
-  const { selectedFigure: activeCellCords, players, currentPlayer } = useSelector((store) => store.game);
+  const {
+    selectedFigure: activeCellCords,
+    players,
+    currentPlayer,
+    targetCells,
+  } = useSelector((store) => store.game);
   const { id } = useSelector((store) => store.player);
   const dispatch = useDispatch()
   const figureCharacteristics = extractFigureCharacteristics(value);
   const Figure = figures[figureCharacteristics?.figure as keyof IFigures];
   const isActive = cords.x === activeCellCords?.x && cords.y === activeCellCords?.y;
+  const isTargetCell = targetCells.find((it) => it.x === cords.x && it.y === cords.y);
   const cellClass = cn(styles.container, {
     [styles.container_black]: color === 'black',
     [styles.container_active]: isActive,
+    [styles.container_target]: isTargetCell,
   });
 
   const onCellClick = (): void => {
@@ -28,7 +35,11 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
     if (value === 0 || players[id] !== figureCharacteristics?.color) {
       return;
     }
-    dispatch(setSelectedFigure(cords));
+    dispatch(setSelectedFigure({
+      figureCords: cords,
+      figureType: figureCharacteristics.figure,
+      figureColor: figureCharacteristics.color,
+    }));
   };
 
   return (

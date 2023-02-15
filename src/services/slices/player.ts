@@ -6,7 +6,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  id: 1,
+  id: 0,
   name: 'Ivan Drago',
 };
 

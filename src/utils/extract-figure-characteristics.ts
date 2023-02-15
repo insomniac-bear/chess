@@ -1,4 +1,4 @@
-type TFigure = 'Pawn' | 'Rook' | 'Knight' | 'Bishop' | 'Queen' | 'King';
+import { type TFigure } from '../types/figure.types';
 
 interface IExtractFigure {
   color: 'black' | 'white';

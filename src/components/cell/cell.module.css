@@ -11,3 +11,8 @@
 .container_active {
   background-color: aquamarine;
 }
+
+.container_target {
+  box-sizing: border-box;
+  border: 5px solid rgba(255, 0, 0, .3);
+}
