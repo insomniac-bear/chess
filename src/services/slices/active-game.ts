@@ -1,7 +1,7 @@
-import { type TBoard } from './../../types/board.types';
+import type { TBoard } from './../../types/board.types';
+import type { ICellCords } from '../../types/cell.types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { mockBoard } from '../../mockData/board';
-import { type ICellCords } from '../../types/cell.types';
 import { getFigureTargetCells } from '../../utils';
 
 interface IInitialState {
@@ -34,10 +34,21 @@ export const activeGameSlice = createSlice({
       } = action.payload;
 
       state.selectedFigure = figureCords;
-      state.targetCells = getFigureTargetCells(figureCords, figureType, figureColor);
+      const allTargetsCoord = getFigureTargetCells(figureCords, figureType, figureColor);
+
+      state.targetCells = allTargetsCoord.filter((targetCellCoord) => state.board[targetCellCoord.y][targetCellCoord.x] === 0);
+    },
+
+    moveFigure (state, action: PayloadAction<ICellCords>) {
+      if (state.selectedFigure !== null) {
+        state.board[action.payload.y][action.payload.x] = state.board[state.selectedFigure.y][state.selectedFigure.x];
+        state.board[state.selectedFigure?.y][state.selectedFigure?.x] = 0;
+        state.selectedFigure = null;
+        state.targetCells = [];
+      }
     },
   },
 
 });
 
-export const { setSelectedFigure } = activeGameSlice.actions;
+export const { setSelectedFigure, moveFigure } = activeGameSlice.actions;

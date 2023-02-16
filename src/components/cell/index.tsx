@@ -7,7 +7,7 @@ import styles from './cell.module.css';
 import { extractFigureCharacteristics } from '../../utils';
 import * as figures from '../figures';
 import { useAppSelector as useSelector, useAppDispatch as useDispatch } from '../../services/hooks';
-import { setSelectedFigure } from '../../services/slices/active-game';
+import { moveFigure, setSelectedFigure } from '../../services/slices/active-game';
 
 export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
   const {
@@ -22,6 +22,7 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
   const Figure = figures[figureCharacteristics?.figure as keyof IFigures];
   const isActive = cords.x === activeCellCords?.x && cords.y === activeCellCords?.y;
   const isTargetCell = targetCells.find((it) => it.x === cords.x && it.y === cords.y);
+
   const cellClass = cn(styles.container, {
     [styles.container_black]: color === 'black',
     [styles.container_active]: isActive,
@@ -32,15 +33,34 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
     if (+currentPlayer !== id) {
       return;
     }
-    if (value === 0 || players[id] !== figureCharacteristics?.color) {
-      return;
+
+    if (!targetCells.length) {
+      if (value === 0 || players[id] !== figureCharacteristics?.color) {
+        return;
+      }
+      dispatch(setSelectedFigure({
+        figureCords: cords,
+        figureType: figureCharacteristics.figure,
+        figureColor: figureCharacteristics.color,
+      }));
+    } else {
+      if (players[id] === figureCharacteristics?.color) {
+        dispatch(setSelectedFigure({
+          figureCords: cords,
+          figureType: figureCharacteristics.figure,
+          figureColor: figureCharacteristics.color,
+        }));
+      } else {
+        const isCellsMatch = targetCells.find((targetCell) => cords.y === targetCell.y && cords.x === targetCell.x);
+        if (isCellsMatch) {
+          dispatch(moveFigure({
+            x: cords.x,
+            y: cords.y,
+          }));
+        }
+      }
     }
-    dispatch(setSelectedFigure({
-      figureCords: cords,
-      figureType: figureCharacteristics.figure,
-      figureColor: figureCharacteristics.color,
-    }));
-  };
+  }
 
   return (
     <div className={cellClass} onClick={onCellClick}>
