@@ -34,9 +34,11 @@ export const activeGameSlice = createSlice({
       } = action.payload;
 
       state.selectedFigure = figureCords;
-      const allTargetsCoord = getFigureTargetCells(figureCords, figureType, figureColor);
+      const allTargetsCoord = getFigureTargetCells(figureCords, figureType, figureColor, state.board);
 
-      state.targetCells = allTargetsCoord.filter((targetCellCoord) => state.board[targetCellCoord.y][targetCellCoord.x] === 0);
+      state.targetCells = allTargetsCoord.filter((targetCellCoord) => {
+        return state.board[targetCellCoord.y][targetCellCoord.x] === 0
+      });
     },
 
     moveFigure (state, action: PayloadAction<ICellCords>) {
