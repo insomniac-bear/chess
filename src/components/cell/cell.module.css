@@ -16,3 +16,7 @@
   box-sizing: border-box;
   border: 5px solid rgba(255, 0, 0, .3);
 }
+
+.container_attacked {
+  background-color: red;
+}

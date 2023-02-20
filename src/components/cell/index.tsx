@@ -7,7 +7,7 @@ import styles from './cell.module.css';
 import { extractFigureCharacteristics } from '../../utils';
 import * as figures from '../figures';
 import { useAppSelector as useSelector, useAppDispatch as useDispatch } from '../../services/hooks';
-import { moveFigure, setSelectedFigure } from '../../services/slices/active-game';
+import { attackFigure, moveFigure, setSelectedFigure } from '../../services/slices/active-game';
 
 export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
   const {
@@ -15,6 +15,7 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
     players,
     currentPlayer,
     targetCells,
+    attackedCells,
   } = useSelector((store) => store.game);
   const { id } = useSelector((store) => store.player);
   const dispatch = useDispatch()
@@ -22,11 +23,12 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
   const Figure = figures[figureCharacteristics?.figure as keyof IFigures];
   const isActive = cords.x === activeCellCords?.x && cords.y === activeCellCords?.y;
   const isTargetCell = targetCells.find((it) => it.x === cords.x && it.y === cords.y);
-
+  const isAttacked = attackedCells.find((it) => it.x === cords.x && it.y === cords.y)
   const cellClass = cn(styles.container, {
     [styles.container_black]: color === 'black',
     [styles.container_active]: isActive,
     [styles.container_target]: isTargetCell,
+    [styles.container_attacked]: isAttacked,
   });
 
   const onCellClick = (): void => {
@@ -52,11 +54,13 @@ export const Cell: FC<ICellProps> = ({ color, value, cords }) => {
         }));
       } else {
         const isCellsMatch = targetCells.find((targetCell) => cords.y === targetCell.y && cords.x === targetCell.x);
+        const isAttackedMatch = attackedCells.find((attackedCells) => cords.y === attackedCells.y && cords.x === attackedCells.x);
+
         if (isCellsMatch) {
-          dispatch(moveFigure({
-            x: cords.x,
-            y: cords.y,
-          }));
+          dispatch(moveFigure({ ...cords }));
+        }
+        if (isAttackedMatch) {
+          dispatch(attackFigure({ ...cords }))
         }
       }
     }
