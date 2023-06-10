@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+// import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import { ServerException } from './exceptions/server-exception';
+import { ErrorCode } from './exceptions/error-codes';
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -12,12 +15,19 @@ const limiter = rateLimit({
 });
 
 async function bootstrap() {
+  const PORT = process.env.PORT || 4000;
   const app = await NestFactory.create(AppModule);
 
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      exceptionFactory: () => new ServerException(ErrorCode.ValidationError),
+    }),
+  );
   app.enableCors();
-  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+  // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   app.use(limiter);
   app.use(helmet());
-  await app.listen(4000);
+  await app.listen(PORT);
 }
 bootstrap();
