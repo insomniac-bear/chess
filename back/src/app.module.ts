@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseService } from './database/database.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseService } from './database/database.service';
       useClass: DatabaseService,
       inject: [DatabaseService],
     }),
+    UsersModule,
   ],
   controllers: [],
   providers: [DatabaseService],
