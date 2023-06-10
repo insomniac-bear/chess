@@ -1,19 +1,28 @@
 :root {
   /* color scheme */
-  --primary-light: #f3f3f3;
+  --primary-light: #eaeaea;
   --primary-background: #081a22;
   --primary-accent: #2783aa;
 
   --secondary-85: #0c2733;
   --secondary-80: #103444;
-  --secondary-60: #174f66;
+  --secondary-60: #325969;
   --secondary-50: #1f6988;
-  --secondary-40: #174f66;
+  --secondary-40: #566D77;
   --secondary-20: #a7bbc3;
   --secondary-10: #d1e5d;
 
   --service-error: #ba0070;
   --service-success: #2bdcbc;
+
+  /* font sizes */
+  --h1: 40px;
+  --h2: 30px;
+  --text-l: 18px;
+  --text-m: 18px;
+  --text-s: 16px;
+  --label: 16px;
+  --label-s: 12px;
 
   /* fonts */
   --inter: Inter, Arial, sans-serif;
