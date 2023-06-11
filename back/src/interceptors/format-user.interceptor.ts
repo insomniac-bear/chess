@@ -14,13 +14,15 @@ export class FormatUserInterceptor implements NestInterceptor {
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
     return next.handle().pipe(
-      map((data: User | User[]) => {
+      map((data: User | User[] | Record<string, never>) => {
         if (Array.isArray(data)) {
           for (const user of data) {
             delete user.hashed_password;
           }
         } else {
-          delete data.hashed_password;
+          if (data.hasOwnProperty('hashed_password')) {
+            delete data.hashed_password;
+          }
         }
 
         return data;

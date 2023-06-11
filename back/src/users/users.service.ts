@@ -5,6 +5,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { ServerException } from 'src/exceptions/server-exception';
+import { ErrorCode } from 'src/exceptions/error-codes';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +15,13 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const candidate = await this.findByEmail(createUserDto.email);
+
+    if (candidate) {
+      throw new ServerException(ErrorCode.UserAlreadyExist);
+    }
+
     return hash(createUserDto.password, 10).then((hashed_password) =>
       this.userRepository.save({
         email: createUserDto.email,
@@ -27,8 +35,12 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findById(id: number) {
-    return this.userRepository.findOneBy({ id });
+  async findById(id: number) {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) {
+      return {};
+    }
+    return user;
   }
 
   findByEmail(email: string) {
