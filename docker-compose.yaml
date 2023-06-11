@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: 'chess-api'
+    build:
+      context: back
+      dockerfile: Dockerfile
+    env_file: back/.env
+    restart: on-failure
+    ports:
+      - '4000:4000'
+    depends_on:
+      - postgres
+    healthcheck:
+      test: "wget -nv -t1 --spider 'http://localhost:4000'"
+      interval: 1m30s
+      timeout: 30s
+      retries: 3
+      start_period: 40s
+    networks:
+      - internal-networks
+      - internet
+
+  postgres:
+    container_name: chess-db
+    image: postgres:12.12-alpine
+    restart: on-failure
+    env_file: .env
+    networks:
+      - internal-networks
+
+networks:
+  internal-networks:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
