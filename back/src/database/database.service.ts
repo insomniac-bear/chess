@@ -9,7 +9,7 @@ export class DatabaseService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     return {
       type: this.configService.get('database.type'),
-      host: this.configService.get('database.url'),
+      host: this.configService.get('database.host'),
       port: this.configService.get('database.port'),
       username: this.configService.get('database.username'),
       password: this.configService.get('database.password'),
