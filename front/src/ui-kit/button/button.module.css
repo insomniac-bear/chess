@@ -1,7 +1,6 @@
 .button {
   padding: 10px 12px;
-  font-size: var(--text-s);
-  font-weight: 500;
+  font: var(--f-text-s-bold);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -11,12 +10,7 @@
 .primary {
   composes: button;
   color: var(--primary-light);
-  font-style: var(--inter);
   background-color: var(--primary-accent);
-}
-
-.primary:hover {
-  background-color: var(--secondary-50);
 }
 
 .primary:focus {
@@ -35,12 +29,9 @@
 .secondary {
   composes: button;
   padding: 8px 10px;
+  color: var(--primary-light);
   background-color: inherit;
-  border: 1px solid (--primary-light);
-}
-
-.secondary:hover {
-  background-color: var(--secondary-80);
+  border: 1px solid var(--primary-light);
 }
 
 .secondary:focus {
@@ -51,4 +42,35 @@
   color: var(--secondary-40);
   border: 1px solid var(--secondary-40);
   cursor: not-allowed;
+}
+
+.text {
+  color: var(--primary-light);
+  font: var(--f-text-s-bold);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color .6s linear;
+}
+
+.text:focus {
+  color: var(--primary-accent);
+}
+
+.text:disabled {
+  color: var(--secondary-40);
+}
+
+@media (hover: hover) {
+  .primary:hover {
+    background-color: var(--secondary-50);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary-80);
+  }
+
+  .text:hover {
+    color: var(--primary-accent);
+  }
 }

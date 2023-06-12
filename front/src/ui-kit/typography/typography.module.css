@@ -1,0 +1,44 @@
+.h1 {
+  padding: 0;
+  font: var(--f-h1);
+}
+
+.h2 {
+  padding: 0;
+  font: var(--f-h2);
+}
+
+.text-l {
+  padding: 0;
+  font: var(--f-text-l);
+}
+
+.text-m {
+  padding: 0;
+  font: var(--f-text-m);
+}
+
+.text-s {
+  padding: 0;
+  font: var(--f-text-s);
+}
+
+.text-s-bold {
+  padding: 0;
+  font: var(--f-text-s-bold);
+}
+
+.label {
+  padding: 0;
+  font: var(--f-label);
+}
+
+.label-s {
+  padding: 0;
+  font: var(--f-label-s);
+}
+
+.label-s-bold {
+  padding: 0;
+  font: var(--f-label-s-bold);
+}

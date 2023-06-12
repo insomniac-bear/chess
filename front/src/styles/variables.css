@@ -15,15 +15,17 @@
   --service-error: #ba0070;
   --service-success: #2bdcbc;
 
-  /* font sizes */
-  --h1: 40px;
-  --h2: 30px;
-  --text-l: 18px;
-  --text-m: 18px;
-  --text-s: 16px;
-  --label: 16px;
-  --label-s: 12px;
+  /* fonts family */
+  --inter: Inter, Arial, sans-serif;
 
   /* fonts */
-  --inter: Inter, Arial, sans-serif;
+  --f-h1: normal 500 40px/1.2 var(--inter);
+  --f-h2: normal 500 30px/1.2 var(--inter);
+  --f-text-l: normal 600 18px/1.33 var(--inter);
+  --f-text-m: normal 300 18px/1.33 var(--inter);
+  --f-text-s: normal 300 16px/1.25 var(--inter);
+  --f-text-s-bold: normal 500 16px/1.25 var(--inter);
+  --f-label: normal 400 16px/1.25 var(--inter);
+  --f-label-s: normal 400 12px/1.33 var(--inter);
+  --f-label-s-bold: normal 600 12px/1.33 var(--inter);
 }
