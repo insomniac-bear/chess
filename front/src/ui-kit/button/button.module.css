@@ -61,6 +61,30 @@
   color: var(--secondary-40);
 }
 
+.icon {
+  margin :0;
+  padding: 0;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.icon path {
+  transition: fill .6s ease;
+}
+
+.icon:focus path {
+  fill: var(--primary-accent);
+}
+
+.icon:disabled {
+  cursor: not-allowed;
+}
+
+.icon:disabled path {
+  fill: var(--secondary-40);
+}
+
 @media (hover: hover) {
   .primary:hover {
     background-color: var(--secondary-50);
@@ -72,5 +96,9 @@
 
   .text:hover {
     color: var(--primary-accent);
+  }
+
+  .icon:hover path {
+    fill: var(--primary-accent);
   }
 }
