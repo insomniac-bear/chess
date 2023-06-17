@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  padding: 28px 72px;
+  width: 100%;
+  color: var(--primary-light);
+}
+
+.anonymous {
+  justify-content: center;
+}
+
+.auth {
+  justify-content: end;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+}

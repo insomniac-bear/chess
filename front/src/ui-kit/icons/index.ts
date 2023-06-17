@@ -20,6 +20,7 @@ import { ProcessIcon } from './process-icon';
 import { RepeatIcon } from './repeat-icon';
 import { ReplayIcon } from './replay-icon';
 import { SearchIcon } from './search-icon';
+import { SelectIcon } from './select-icon';
 import { SettingsIcon } from './settings-icon';
 import { SkipArrowIcon } from './skip-arrow-icon';
 import { VisibilityIcon } from './visibility-icon';
@@ -47,6 +48,7 @@ export interface IIcons {
   RepeatIcon: FC<HTMLProps<SVGElement>>;
   ReplayIcon: FC<HTMLProps<SVGElement>>;
   SearchIcon: FC<HTMLProps<SVGElement>>;
+  SelectIcon: FC<HTMLProps<SVGElement>>;
   SettingsIcon: FC<HTMLProps<SVGElement>>;
   SkipArrowIcon: FC<HTMLProps<SVGElement>>;
   VisibilityIcon: FC<HTMLProps<SVGElement>>;
@@ -75,6 +77,7 @@ export {
   RepeatIcon,
   ReplayIcon,
   SearchIcon,
+  SelectIcon,
   SettingsIcon,
   SkipArrowIcon,
   VisibilityIcon,

@@ -35,5 +35,5 @@ export type PolymorphicRef<C extends ElementType> =
 export type TTypographyProps<C extends ElementType> =
 PolymorphicComponentPropWithRef<
   C,
-  { TypographyType?: TTypographyType | 'text-m' }
+  { typographyType?: TTypographyType | 'text-m' }
 >

@@ -1,13 +1,13 @@
-import styles from './app.module.css';
+import styles from './ui.module.css';
 import type { FC } from 'react';
 
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
 import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplayIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
 
-export const App: FC = () => {
+export const UIPage: FC = () => {
   return (
-    <div>
+    <>
       <div>
         <Button btnType='primary'>
           Primary button
@@ -61,6 +61,6 @@ export const App: FC = () => {
         <VisibilityIcon />
         <VisibilityOffIcon />
       </div>
-    </div>
+    </>
   );
 };
