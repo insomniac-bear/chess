@@ -14,20 +14,21 @@ const Input: FC<ICustomInputProps> = forwardRef(({
   className,
 }, ref: LegacyRef<HTMLInputElement>) => {
   return (
-    <label htmlFor={`${name}Input`} className={cn(styles.wrapper, className)}>
+    <label htmlFor={`${name}-input`} title={placeholder} className={cn(styles.input, className)}>
       <input
         value={value}
         disabled={disabled}
         type={'text'}
-        className={cn(styles.input)}
+        className={cn(styles.input__field)}
         ref={ref}
         name={name}
-        id={`${name}Input`}
+        id={`${name}-input`}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
       />
-      {errors && <span className={styles.message}>{errors?.message}</span>}
+      <span className={styles.input__placeholder}>{placeholder}</span>
+      {errors && <span className={styles.input__errorMessage}>{errors?.message}</span>}
     </label>
   );
 });

@@ -77,17 +77,17 @@ export const UIPage: FC = () => {
         <Input
           placeholder='Логин'
           errors={errors.login}
-        {...register('login', {
-          required: 'Это поле необходимо заполнить.',
-          minLength: {
-            value: 1,
-            message: 'Минимальное количество символов: 1',
-          },
-          maxLength: {
-            value: 10,
-            message: 'Максимальное количество символов: 10',
-          },
-        })}/>
+          {...register('login', {
+            required: 'Это поле необходимо заполнить.',
+            minLength: {
+              value: 1,
+              message: 'Минимальное количество символов: 1',
+            },
+            maxLength: {
+              value: 10,
+              message: 'Максимальное количество символов: 10',
+            },
+          })}/>
       </div>
     </>
   );
