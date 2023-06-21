@@ -4,8 +4,19 @@ import type { FC } from 'react';
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
 import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplayIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
+import { useForm } from 'react-hook-form';
+import Input from '../../ui-kit/input/input';
+
+interface ITestFormState {
+  login: string;
+}
 
 export const UIPage: FC = () => {
+  const {
+    register,
+    formState: {  errors },
+  } = useForm<ITestFormState>({ mode: 'onTouched' });
+
   return (
     <>
       <div>
@@ -60,6 +71,23 @@ export const UIPage: FC = () => {
         <SkipArrowIcon />
         <VisibilityIcon />
         <VisibilityOffIcon />
+      </div>
+
+      <div style={{padding: '20px'}}>
+        <Input
+          placeholder='Логин'
+          errors={errors.login}
+        {...register('login', {
+          required: 'Это поле необходимо заполнить.',
+          minLength: {
+            value: 1,
+            message: 'Минимальное количество символов: 1',
+          },
+          maxLength: {
+            value: 10,
+            message: 'Максимальное количество символов: 10',
+          },
+        })}/>
       </div>
     </>
   );
