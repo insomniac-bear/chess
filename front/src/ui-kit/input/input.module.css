@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px 0;
+  position: relative;
 }
 
 .input__field {
@@ -35,10 +36,25 @@
   opacity: 0;
 }
 
+.input__placeholder {
+  composes: input-text;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  transition: all 200ms;
+  top: 12px;
+  left: 12px;
+}
+
+.input__field:focus + .input__placeholder ,
+.input__field:not(:placeholder-shown) + .input__placeholder {
+  top: -6px;
+  font-size: 12px; 
+  background-color: var(--primary-background);
+}
 
 .input__errorMessage {
   composes: input-text;
-  grid-area: message;
   font-size: 12px;
   line-height: 16px;
   padding-left: 12px;
