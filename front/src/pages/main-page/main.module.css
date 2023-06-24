@@ -5,7 +5,7 @@
 }
 
 .section {
-  padding-top: 142px;
+  padding-top: 144px;
   padding-bottom: 90px;
   background-image: url('../../assets/intro-bg.png');
   background-repeat: no-repeat;
@@ -14,16 +14,17 @@
 }
 
 .title {
+  margin: 0;
   width: 472px;
   color: var(--primary-light);
 }
 
 .notion {
-  margin-top: 16px;
+  margin: 16px 0 0 0;
   color: var(--primary-light);
   width: 472px;
 }
 
 .button {
-  margin-top: 48px;
+  margin-top: 46px;
 }
