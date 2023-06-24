@@ -11,13 +11,13 @@ export const Typography = forwardRef(
       as,
       children,
       className,
-      TypographyType = 'text-m',
+      typographyType = 'text-m',
       ...restProps
     }: TTypographyProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = as || 'p';
-    const typographyStyles = cn(styles[TypographyType], {
+    const typographyStyles = cn(styles[typographyType], {
       [className ?? '']: className,
     });
 
