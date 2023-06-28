@@ -22,6 +22,19 @@ export const UIPage: FC = () => {
       </div>
 
       <div>
+        <Button btnType='primary' as='link' to='/'>
+          Link like as Primary button
+        </Button>
+        <Button btnType='secondary' as='link' to='/'>
+          Link like as Secondary button
+        </Button>
+        <Button btnType='text' as='link' to='/'>
+          Link like as Text button
+        </Button>
+        <Button btnType='icon' icon='LogoutIcon' as='link' to='/' />
+      </div>
+
+      <div>
         <Typography as='h1' typographyType='h1' className={styles.color}>H1 Title</Typography>
         <Typography as='h2' typographyType='h2' className={styles.color}>H2 Title</Typography>
         <Typography as='p' typographyType='text-l' className={styles.color}>Text large</Typography>
