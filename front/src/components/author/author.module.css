@@ -1,0 +1,30 @@
+.author {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 4px 20px;
+  margin: 0;
+}
+
+.author_photo {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.author_subscription {
+  align-self: center;
+  width: 200px;
+}
+
+.author_name {
+  justify-self: end;
+  margin: 0;
+  padding: 0;
+  color: var(--primary-light);
+}
+
+.author_role {
+  margin: 0;
+  padding: 0;
+  color: var(--primary-light);
+}
