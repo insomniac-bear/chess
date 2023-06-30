@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
-import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplayIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
+import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplyIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
 import { Counter } from '../../ui-kit/counter/counter';
 
 export const UIPage: FC = () => {
@@ -67,7 +67,7 @@ export const UIPage: FC = () => {
         <PersonSearchIcon />
         <ProcessIcon />
         <RepeatIcon />
-        <ReplayIcon />
+        <ReplyIcon />
         <SearchIcon />
         <SelectIcon />
         <SettingsIcon />
