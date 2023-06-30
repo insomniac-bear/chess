@@ -4,11 +4,12 @@ import type { FC } from 'react';
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
 import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplayIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
+import { Counter } from '../../ui-kit/counter/counter';
 
 export const UIPage: FC = () => {
   return (
     <>
-      <div>
+      <div className={styles.container}>
         <Button btnType='primary'>
           Primary button
         </Button>
@@ -21,7 +22,7 @@ export const UIPage: FC = () => {
         <Button btnType='icon' icon='LogoutIcon' />
       </div>
 
-      <div>
+      <div className={styles.container}>
         <Button btnType='primary' as='link' to='/'>
           Link like as Primary button
         </Button>
@@ -34,7 +35,7 @@ export const UIPage: FC = () => {
         <Button btnType='icon' icon='LogoutIcon' as='link' to='/' />
       </div>
 
-      <div>
+      <div className={styles.container}>
         <Typography as='h1' typographyType='h1' className={styles.color}>H1 Title</Typography>
         <Typography as='h2' typographyType='h2' className={styles.color}>H2 Title</Typography>
         <Typography as='p' typographyType='text-l' className={styles.color}>Text large</Typography>
@@ -46,7 +47,7 @@ export const UIPage: FC = () => {
         <Typography as='p' typographyType='label-s-bold' className={styles.color}>Label small bold</Typography>
       </div>
 
-      <div>
+      <div className={styles.container}>
         <AddIcon />
         <BarChartIcon />
         <BlockIcon />
@@ -73,6 +74,11 @@ export const UIPage: FC = () => {
         <SkipArrowIcon />
         <VisibilityIcon />
         <VisibilityOffIcon />
+      </div>
+      <div className={styles.container}>
+        <Counter />
+        <Counter count={3} />
+        <Counter count={33} />
       </div>
     </>
   );

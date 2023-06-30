@@ -1,6 +1,7 @@
 @font-face {
   font-family: Inter;
   src:
+    local('Inter'),
     url(./Inter-Light.woff2) format('woff2'),
     url(./Inter-Light.woff) format('woff');
   font-style: normal;
@@ -10,7 +11,8 @@
 @font-face {
   font-family: Inter;
   src:
-    url(./Inter-Medium.woff2) format('woff2'),
+  local('Inter'),
+  url(./Inter-Medium.woff2) format('woff2'),
     url(./Inter-Medium.woff) format('woff');
   font-style: normal;
   font-weight: 500;
@@ -19,7 +21,8 @@
 @font-face {
   font-family: Inter;
   src:
-    url(./Inter-Bold.woff2) format('woff2'),
+  local('Inter'),
+  url(./Inter-Bold.woff2) format('woff2'),
     url(./Inter-Bold.woff) format('woff');
   font-style: normal;
   font-weight: 700;
