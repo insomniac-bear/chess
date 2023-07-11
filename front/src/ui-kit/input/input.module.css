@@ -14,6 +14,15 @@
   position: relative;
 }
 
+.input_hasError .input__field {
+  border-color: var(--service-error);
+  color: var(--service-error);
+}
+
+.input_hasError .input__placeholder {
+  color: var(--service-error);
+}
+
 .input__field {
   composes: input-text;
   box-sizing: border-box;
@@ -24,11 +33,15 @@
   border: 2px solid var(--primary-light);
   border-radius: 5px;
   outline: none;
-  /* transition: 0.3s ; */
+  transition: border-color 0.2s ease-in, color 0.2s ease-in;
 }
 
 .input__field:focus {
   border-color: var(--primary-accent);
+}
+
+.input_hasError .input__field:focus {
+  border-color: var(--service-error);
 }
 
 .input__field::placeholder {
@@ -41,7 +54,7 @@
   line-height: 1;
   pointer-events: none;
   position: absolute;
-  transition: all 200ms;
+  transition: all 0.2s ease-in;
   top: 12px;
   left: 12px;
 }
