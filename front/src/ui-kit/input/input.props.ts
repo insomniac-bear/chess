@@ -1,15 +1,12 @@
-import { ChangeEvent } from 'react';
-import { FieldError } from 'react-hook-form';
+import { ChangeEvent, HTMLProps } from 'react';
+import { FieldError, Path, UseFormRegister, FieldValues } from 'react-hook-form';
 
 
-export interface ICustomInputProps {
-  name: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
+export interface ICustomInputProps<T extends FieldValues> extends HTMLProps<HTMLInputElement> {
+  name: Path<T>;
+  error: FieldError | undefined;
   placeholder?: string;
   disabled?: boolean;
-  value?: string | number;
-  className?: string;
-  errors?: FieldError;
+  register: UseFormRegister<T>
   isConfidential?: boolean
 }

@@ -1,5 +1,6 @@
 import styles from './ui.module.css';
 import type { FC } from 'react';
+import type { InferType } from 'yup'
 
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
@@ -7,13 +8,27 @@ import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIc
 import { Counter } from '../../ui-kit/counter/counter';
 import Input from '../../ui-kit/input/input';
 import { useForm } from 'react-hook-form';
+import { object, string } from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+
+const schema = object({
+  login: string().trim().required('Поле обязательно').max(10, 'ДлиннООО')
+})
+type TForm = InferType<typeof schema>
 
 export const UIPage: FC = () => {
   const {
     register,
+    handleSubmit,
     formState: {  errors },
-  } = useForm<{login: string}>({ mode: 'onTouched' });
+  } = useForm<TForm>({ mode: 'onTouched', resolver: yupResolver(schema) });
 
+
+  const formSubmitHandler = (data: TForm) => {
+    console.log(data);
+    
+  };
   return (
     <>
       <div className={styles.container}>
@@ -83,23 +98,15 @@ export const UIPage: FC = () => {
         <VisibilityOffIcon />
       </div>
 
-      <div style={{padding: '20px'}}>
+      <form onSubmit={handleSubmit(formSubmitHandler)} style={{padding: '20px'}}>
         <Input
+          name='login'
           isConfidential
           placeholder='Логин'
-          errors={errors.login}
-          {...register('login', {
-            required: 'Это поле необходимо заполнить.',
-            minLength: {
-              value: 1,
-              message: 'Минимальное количество символов: 1',
-            },
-            maxLength: {
-              value: 10,
-              message: 'Максимальное количество символов: 10',
-            },
-          })}/>
-          </div>
+          error={errors.login}
+          register={register}
+        />
+          </form>
       <div className={styles.container}>
         <Counter />
         <Counter count={3} />
