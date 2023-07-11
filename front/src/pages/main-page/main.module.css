@@ -1,0 +1,59 @@
+.main {
+  margin: 0 auto;
+  padding-bottom: 159px;
+  max-width: 1104px;
+  width: 90%;
+}
+
+.section {
+  padding-top: 144px;
+  padding-bottom: 90px;
+  background-image: url('../../assets/intro-bg.png');
+  background-repeat: no-repeat;
+  background-size: 600px;
+  background-position: 100% 57px;
+}
+
+.title {
+  margin: 0;
+  width: 472px;
+  color: var(--primary-light);
+}
+
+.notion {
+  margin: 16px 0 0 0;
+  color: var(--primary-light);
+  width: 472px;
+}
+
+.button {
+  margin-top: 46px;
+}
+
+.authors {
+  margin-top: 150px;
+}
+
+.authors_title,
+.authors_notion {
+  color: var(--primary-light);
+  text-align: center;
+}
+
+.authors_title {
+  margin: 0;
+}
+
+.authors_notion {
+  margin: 14px auto 0;
+  width: 730px;
+}
+
+.authors_list {
+  display: flex;
+  gap: 48px;
+  margin: 48px auto 0;
+  padding: 0;
+  width: 996px;
+  list-style: none;
+}

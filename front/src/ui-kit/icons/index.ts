@@ -18,7 +18,7 @@ import { PersonIcon } from './person-icon';
 import { PersonSearchIcon } from './person-search-icon';
 import { ProcessIcon } from './process-icon';
 import { RepeatIcon } from './repeat-icon';
-import { ReplayIcon } from './replay-icon';
+import { ReplyIcon } from './reply-icon';
 import { SearchIcon } from './search-icon';
 import { SelectIcon } from './select-icon';
 import { SettingsIcon } from './settings-icon';
@@ -46,7 +46,7 @@ export interface IIcons {
   PersonSearchIcon: FC<HTMLProps<SVGElement>>;
   ProcessIcon: FC<HTMLProps<SVGElement>>;
   RepeatIcon: FC<HTMLProps<SVGElement>>;
-  ReplayIcon: FC<HTMLProps<SVGElement>>;
+  ReplyIcon: FC<HTMLProps<SVGElement>>;
   SearchIcon: FC<HTMLProps<SVGElement>>;
   SelectIcon: FC<HTMLProps<SVGElement>>;
   SettingsIcon: FC<HTMLProps<SVGElement>>;
@@ -75,7 +75,7 @@ export {
   PersonSearchIcon,
   ProcessIcon,
   RepeatIcon,
-  ReplayIcon,
+  ReplyIcon,
   SearchIcon,
   SelectIcon,
   SettingsIcon,

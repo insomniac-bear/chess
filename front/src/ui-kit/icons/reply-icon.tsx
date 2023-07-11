@@ -1,6 +1,6 @@
 import type { FC, HTMLProps } from 'react';
 
-export const ReplayIcon: FC<HTMLProps<SVGElement>> = ({ className }) => {
+export const ReplyIcon: FC<HTMLProps<SVGElement>> = ({ className }) => {
   return (
     <svg
       className={className}

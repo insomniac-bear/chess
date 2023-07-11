@@ -4,6 +4,7 @@ import { Paths } from '../const/paths';
 import { AnonymousLayout } from '../layouts/anonymous.layout';
 import { ProtectedLayout } from '../layouts/protected.layout';
 import { UIPage } from '../pages/ui-page/ui.page';
+import { MainPage } from '../pages/main-page/main.page';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
         path: Paths.MAIN,
         element: <AnonymousLayout />,
         children: [
+          {
+            path: Paths.MAIN,
+            element: <MainPage />,
+          },
           {
             path: Paths.UI,
             element: <UIPage />,
