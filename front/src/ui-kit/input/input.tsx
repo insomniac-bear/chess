@@ -2,6 +2,7 @@ import { FC, forwardRef, LegacyRef } from 'react';
 import styles from './input.module.css'; 
 import { ICustomInputProps } from './input.props';
 import cn from 'classnames';
+import { ErrorIcon } from '../icons';
 
 const Input: FC<ICustomInputProps> = forwardRef(({
   name,
@@ -27,6 +28,7 @@ const Input: FC<ICustomInputProps> = forwardRef(({
         onChange={onChange}
         onBlur={onBlur}
       />
+      {errors && <ErrorIcon className={styles.input__errorIcon}/>}
       <span className={styles.input__placeholder}>{placeholder}</span>
       {errors && <span className={styles.input__errorMessage}>{errors?.message}</span>}
     </label>

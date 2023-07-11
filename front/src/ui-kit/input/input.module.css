@@ -14,14 +14,6 @@
   position: relative;
 }
 
-.input_hasError .input__field {
-  border-color: var(--service-error);
-  color: var(--service-error);
-}
-
-.input_hasError .input__placeholder {
-  color: var(--service-error);
-}
 
 .input__field {
   composes: input-text;
@@ -34,6 +26,12 @@
   border-radius: 5px;
   outline: none;
   transition: border-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.input_hasError .input__field {
+  border-color: var(--service-error);
+  color: var(--service-error);
+  padding: 0 40px 0 12px;
 }
 
 .input__field:focus {
@@ -59,6 +57,10 @@
   left: 12px;
 }
 
+.input_hasError .input__placeholder {
+  color: var(--service-error);
+}
+
 .input__field:focus + .input__placeholder ,
 .input__field:not(:placeholder-shown) + .input__placeholder {
   top: -6px;
@@ -73,4 +75,14 @@
   padding-left: 12px;
   
   color: var(--service-error);
+}
+
+.input__errorIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.input__errorIcon > path {
+  fill: var(--service-error);
 }
