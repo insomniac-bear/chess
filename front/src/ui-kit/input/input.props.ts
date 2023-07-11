@@ -11,4 +11,5 @@ export interface ICustomInputProps {
   value?: string | number;
   className?: string;
   errors?: FieldError;
+  isConfidential?: boolean
 }

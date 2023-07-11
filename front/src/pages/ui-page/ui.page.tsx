@@ -85,6 +85,7 @@ export const UIPage: FC = () => {
 
       <div style={{padding: '20px'}}>
         <Input
+          isConfidential
           placeholder='Логин'
           errors={errors.login}
           {...register('login', {
