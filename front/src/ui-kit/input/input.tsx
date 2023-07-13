@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import type { ICustomInputProps } from './input.props';
 import { useState } from 'react';
@@ -9,18 +9,17 @@ import { Typography } from '../typography/typography';
 
 const Input = <T extends FieldValues>({
   name,
-  onChange,
-  onBlur,
   placeholder,
   disabled,
-  value,
   error,
   register,
   isConfidential = false,
   className,
 }: ICustomInputProps<T>): JSX.Element => {
   const [isTextHidden, setTextIsHidden] = useState<boolean>(isConfidential);
-  const labelStyles = cn(styles.input, className, { [styles.input_hasError]: error });
+  const labelStyles = cn(styles.input, className, {
+    [styles.input_hasError]: error[name],
+  });
 
   const handleShowPassword = (e: MouseEvent) => {
     // prevent bubbling
@@ -38,19 +37,15 @@ const Input = <T extends FieldValues>({
     >
       <input
         {...register(name)}
-        value={value}
         disabled={disabled}
         type={!isTextHidden ? 'text' : 'password'}
         className={styles.input__field}
         name={name}
-        id={`${name}-input`}
         placeholder={placeholder}
-        onChange={onChange}
-        onBlur={onBlur}
       />
       <span className={styles.input__placeholder}>{placeholder}</span>
 
-      {isConfidential && !error && (
+      {isConfidential && !error[name] && (
         <button
           className={styles.input__showPassBtn}
           onClick={handleShowPassword}
@@ -61,8 +56,8 @@ const Input = <T extends FieldValues>({
         </button>
       )}
 
-      {error && <ErrorIcon className={styles.input__errorIcon} />}
-      {error && <span className={styles.input__errorMessage}>{error?.message}</span>}
+      {error[name] && <ErrorIcon className={styles.input__errorIcon} />}
+      {error[name] && <span className={styles.input__errorMessage}>{error[name]?.message?.toString()}</span>}
     </Typography>
   );
 };

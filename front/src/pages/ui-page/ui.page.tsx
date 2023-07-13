@@ -27,7 +27,7 @@ export const UIPage: FC = () => {
 
   const formSubmitHandler = (data: TForm) => {
     console.log(data);
-    
+
   };
   return (
     <>
@@ -103,7 +103,7 @@ export const UIPage: FC = () => {
           name='login'
           isConfidential
           placeholder='Логин'
-          error={errors.login}
+          error={errors}
           register={register}
         />
           </form>

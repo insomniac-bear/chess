@@ -1,4 +1,5 @@
 .button {
+  display: block;
   padding: 10px 12px;
   font: var(--f-text-s-bold);
   text-decoration: none;

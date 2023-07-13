@@ -1,10 +1,10 @@
-import { ChangeEvent, HTMLProps } from 'react';
-import { FieldError, Path, UseFormRegister, FieldValues } from 'react-hook-form';
+import { HTMLProps } from 'react';
+import { Path, UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
 
 
 export interface ICustomInputProps<T extends FieldValues> extends HTMLProps<HTMLInputElement> {
   name: Path<T>;
-  error: FieldError | undefined;
+  error: FieldErrors;
   placeholder?: string;
   disabled?: boolean;
   register: UseFormRegister<T>
