@@ -1,9 +1,10 @@
-import { FC, MouseEvent, useState } from 'react';
+import type { MouseEvent } from 'react';
+import type { FieldValues } from 'react-hook-form';
+import type { ICustomInputProps } from './input.props';
+import { useState } from 'react';
 import styles from './input.module.css';
-import { ICustomInputProps } from './input.props';
-import cn from 'classnames';
 import { ErrorIcon, VisibilityIcon, VisibilityOffIcon } from '../icons';
-import { FieldValues } from 'react-hook-form';
+import cn from 'classnames';
 
 const Input = <T extends FieldValues> ({
   name,
@@ -18,6 +19,7 @@ const Input = <T extends FieldValues> ({
   className,
 }: ICustomInputProps<T>): JSX.Element => {
   const [isTextHidden, setTextIsHidden] = useState<boolean>(isConfidential);
+  const labelStyles = cn(styles.input, className, { [styles.input_hasError]: error });
 
   const handleShowPassword = (e: MouseEvent) => {
     // prevent bubbling
@@ -29,14 +31,14 @@ const Input = <T extends FieldValues> ({
     <label
       htmlFor={`${name}-input`}
       title={placeholder}
-      className={cn(styles.input, className, { [styles.input_hasError]: error })}
+      className={labelStyles}
     >
       <input
         {...register(name)}
         value={value}
         disabled={disabled}
         type={!isTextHidden ? 'text' : 'password'}
-        className={cn(styles.input__field)}
+        className={styles.input__field}
         name={name}
         id={`${name}-input`}
         placeholder={placeholder}
