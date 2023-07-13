@@ -1,12 +1,34 @@
 import styles from './ui.module.css';
 import type { FC } from 'react';
+import type { InferType } from 'yup'
 
 import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
 import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplyIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
 import { Counter } from '../../ui-kit/counter/counter';
+import Input from '../../ui-kit/input/input';
+import { useForm } from 'react-hook-form';
+import { object, string } from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+
+const schema = object({
+  login: string().trim().required('Поле обязательно').max(10, 'ДлиннООО')
+})
+type TForm = InferType<typeof schema>
 
 export const UIPage: FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: {  errors },
+  } = useForm<TForm>({ mode: 'onTouched', resolver: yupResolver(schema) });
+
+
+  const formSubmitHandler = (data: TForm) => {
+    console.log(data);
+    
+  };
   return (
     <>
       <div className={styles.container}>
@@ -75,6 +97,16 @@ export const UIPage: FC = () => {
         <VisibilityIcon />
         <VisibilityOffIcon />
       </div>
+
+      <form onSubmit={handleSubmit(formSubmitHandler)} style={{padding: '20px'}}>
+        <Input
+          name='login'
+          isConfidential
+          placeholder='Логин'
+          error={errors.login}
+          register={register}
+        />
+          </form>
       <div className={styles.container}>
         <Counter />
         <Counter count={3} />

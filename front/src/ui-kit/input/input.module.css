@@ -1,0 +1,96 @@
+.input-text {
+  color: var(--primary-light);
+}
+
+.input-icon-position {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px 0;
+  position: relative;
+}
+
+
+.input__field {
+  composes: input-text;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background-color: transparent;
+  border: 2px solid var(--primary-light);
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.input_hasError .input__field {
+  border-color: var(--service-error);
+  color: var(--service-error);
+  padding: 0 40px 0 12px;
+}
+
+.input__field:focus {
+  border-color: var(--primary-accent);
+}
+
+.input_hasError .input__field:focus {
+  border-color: var(--service-error);
+}
+
+.input__field::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+.input__placeholder {
+  composes: input-text;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  transition: all 0.2s ease-in;
+  top: 12px;
+  left: 12px;
+}
+
+.input_hasError .input__placeholder {
+  color: var(--service-error);
+}
+
+.input__field:focus + .input__placeholder ,
+.input__field:not(:placeholder-shown) + .input__placeholder {
+  top: -6px;
+  font-size: 12px; 
+  background-color: var(--primary-background);
+}
+
+.input__errorMessage {
+  composes: input-text;
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 12px;
+  
+  color: var(--service-error);
+}
+
+.input__errorIcon {
+  composes: input-icon-position;
+}
+
+.input__errorIcon > path {
+  fill: var(--service-error);
+}
+
+.input__showPassBtn {
+  composes: input-icon-position;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: max-content;
+  height: max-content;
+}
