@@ -5,8 +5,9 @@ import { useState } from 'react';
 import styles from './input.module.css';
 import { ErrorIcon, VisibilityIcon, VisibilityOffIcon } from '../icons';
 import cn from 'classnames';
+import { Typography } from '../typography/typography';
 
-const Input = <T extends FieldValues> ({
+const Input = <T extends FieldValues>({
   name,
   onChange,
   onBlur,
@@ -28,7 +29,9 @@ const Input = <T extends FieldValues> ({
   };
 
   return (
-    <label
+    <Typography
+      as="label"
+      typographyType="f-label"
       htmlFor={`${name}-input`}
       title={placeholder}
       className={labelStyles}
@@ -60,7 +63,7 @@ const Input = <T extends FieldValues> ({
 
       {error && <ErrorIcon className={styles.input__errorIcon} />}
       {error && <span className={styles.input__errorMessage}>{error?.message}</span>}
-    </label>
+    </Typography>
   );
 };
 
