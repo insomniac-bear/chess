@@ -103,7 +103,7 @@ export const UIPage: FC = () => {
           name='login'
           isConfidential
           placeholder='Логин'
-          error={errors}
+          errors={errors}
           register={register}
         />
           </form>

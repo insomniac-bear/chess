@@ -75,20 +75,20 @@ export const SignUpPage: FC = () => {
           <Input
             name='name'
             placeholder='Логин'
-            error={errors}
+            errors={errors}
             register={register}
           />
           <Input
             name='email'
             placeholder='Email'
-            error={errors}
+            errors={errors}
             register={register}
           />
           <Input
             name='password'
             isConfidential
             placeholder='Пароль'
-            error={errors}
+            errors={errors}
             register={register}
           />
         </fieldset>
