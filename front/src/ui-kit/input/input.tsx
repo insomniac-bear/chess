@@ -7,7 +7,7 @@ import { ErrorIcon, VisibilityIcon, VisibilityOffIcon } from '../icons';
 import cn from 'classnames';
 import { Typography } from '../typography/typography';
 
-const Input = <T extends FieldValues>({
+export const Input = <T extends FieldValues>({
   name,
   placeholder,
   disabled,
@@ -62,4 +62,3 @@ const Input = <T extends FieldValues>({
   );
 };
 
-export default Input;

@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Logo } from '../../ui-kit/logo/logo';
 import { Typography } from '../../ui-kit/typography/typography';
 import { Button } from '../../ui-kit/button/button';
-import Input from '../../ui-kit/input/input';
+import { Input } from '../../ui-kit/input/input';
 import { MAIL_REG_EX } from '../../const/reg-ex';
 import { ValidationErrors } from '../../const/error-messages';
 import { useForm } from 'react-hook-form';
