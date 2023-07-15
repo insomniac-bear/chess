@@ -3,7 +3,8 @@ import type { FC } from 'react';
 import type { InferType } from 'yup';
 import type { SubmitHandler } from 'react-hook-form';
 
-import { object, string, ref } from 'yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Logo } from '../../ui-kit/logo/logo';
@@ -12,48 +13,23 @@ import { Button } from '../../ui-kit/button/button';
 import { Input } from '../../ui-kit/input/input';
 import { MAIL_REG_EX } from '../../const/reg-ex';
 import { ValidationErrors } from '../../const/error-messages';
-import { useForm } from 'react-hook-form';
 import { useSignupMutation } from '../../store/slices/api/auth.api';
 import { setCookie } from '../../util/cookie';
-
-const schema = object({
-  name: string()
-    .trim()
-    .required(ValidationErrors.FIELD_EMPTY)
-    .min(3, ValidationErrors.USERNAME_SHORT)
-    .max(30, ValidationErrors.USERNAME_LONG),
-  email: string()
-    .trim()
-    .required(ValidationErrors.FIELD_EMPTY)
-    .min(7, ValidationErrors.EMAIL_SHORT)
-    .max(97, ValidationErrors.EMAIL_LONG)
-    .matches(MAIL_REG_EX, ValidationErrors.EMAIL_INCORRECT)
-    .test(
-      'email',
-      ValidationErrors.EMAIL_INCORRECT,
-      (value) => {
-        const secondPart = value.split('@')[1];
-        if (secondPart === undefined) return false;
-        return secondPart.length < 65;
-      }
-    ),
-    password: string()
-    .required(ValidationErrors.FIELD_EMPTY)
-    .min(8, ValidationErrors.PASSWORD_SHORT)
-    .max(128, ValidationErrors.PASSWORD_LONG)
-    .notOneOf([ref('email'), undefined], ValidationErrors.PASSWORD_MATCH_EMAIL),
-});
+import { schema } from './schema';
+import { Navigate } from 'react-router-dom';
+import { Paths } from '../../const/paths';
 
 type TForm = InferType<typeof schema>;
 
 export const SignUpPage: FC = () => {
+  const [errMessage, setErrMessage] = useState<null | string>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TForm>({ reValidateMode: 'onChange', resolver: yupResolver(schema) });
 
-  const [ signUp, { isLoading: isSignupLoading } ] = useSignupMutation();
+  const [ signUp, { isLoading: isSignupLoading, isSuccess: isSignupSuccess } ] = useSignupMutation();
 
   const formHandler: SubmitHandler<TForm> = (data) => {
     signUp(data)
@@ -62,15 +38,19 @@ export const SignUpPage: FC = () => {
         setCookie('access', data.access_token);
       })
       .catch((err) => {
-        console.log(err);
+        setErrMessage(err.data.message);
       });
   }
   return (
-    <main className={styles.main}>
+    <section className={styles.main}>
       <Logo />
       <form className={styles.form} onSubmit={handleSubmit(formHandler)}>
         <Typography as='h2' typographyType='h2' className={styles.title}>Регистрация</Typography>
         <Typography as='p' typographyType='text-s' className={styles.description}>Есть аккаунт? <Button as='link' btnType='text' className={styles.link}>Войти</Button></Typography>
+        {
+          errMessage !== null &&
+          <Typography as='p' typographyType='text-s' className={styles.error}>{errMessage}</Typography>
+        }
         <fieldset className={styles.fields}>
           <Input
             name='name'
@@ -102,6 +82,10 @@ export const SignUpPage: FC = () => {
           Создать аккаунт
         </Button>
       </form>
-    </main>
+      {
+        isSignupSuccess &&
+        <Navigate to={Paths.LK} />
+      }
+    </section>
   );
 };

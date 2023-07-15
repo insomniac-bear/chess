@@ -31,7 +31,6 @@ export const Input = <T extends FieldValues>({
     <Typography
       as="label"
       typographyType="f-label"
-      htmlFor={`${name}-input`}
       title={placeholder}
       className={labelStyles}
     >

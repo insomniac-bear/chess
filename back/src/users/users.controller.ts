@@ -8,6 +8,7 @@ import {
   Req,
   UseGuards,
   UseInterceptors,
+  Post,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -16,6 +17,7 @@ import { FormatUserInterceptor } from 'src/interceptors/format-user.interceptor'
 import { User } from './entities/user.entity';
 
 @UseInterceptors(FormatUserInterceptor)
+@UseGuards(JwtGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -30,19 +32,16 @@ export class UsersController {
     return this.usersService.findById(+id);
   }
 
-  @UseGuards(JwtGuard)
-  @Get('/me')
+  @Post('/me')
   getMe(@Req() req): User {
     return req.user;
   }
 
-  @UseGuards(JwtGuard)
   @Patch()
   update(@Req() req, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     return this.usersService.update(req.user, updateUserDto);
   }
 
-  @UseGuards(JwtGuard)
   @Delete()
   remove(@Req() req) {
     return this.usersService.remove(req.user);

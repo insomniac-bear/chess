@@ -36,3 +36,9 @@ export function getCookie (name: string): string | undefined {
   );
   return matches !== null ? decodeURIComponent(matches[1]) : undefined;
 };
+
+export function deleteCookie(name: string): void {
+  setCookie(name, "", {
+    'max-age': -1
+  })
+}
