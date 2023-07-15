@@ -6,7 +6,7 @@ import { Button } from '../../ui-kit/button/button';
 import { Typography } from '../../ui-kit/typography/typography';
 import { AddIcon, BarChartIcon, BlockIcon, CancelIcon, CloseIcon, ControlArrowIcon, DoneIcon, DrawIcon, ErrorIcon, FlagIcon, GameIcon, GroupIcon, GuideIcon, LogoutIcon, MailIcon, PersonIcon, PersonSearchIcon, ProcessIcon, RepeatIcon, ReplyIcon, SearchIcon, SelectIcon, SettingsIcon, SkipArrowIcon, VisibilityIcon, VisibilityOffIcon } from '../../ui-kit/icons';
 import { Counter } from '../../ui-kit/counter/counter';
-import Input from '../../ui-kit/input/input';
+import { Input } from '../../ui-kit/input/input';
 import { useForm } from 'react-hook-form';
 import { object, string } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -103,7 +103,7 @@ export const UIPage: FC = () => {
           name='login'
           isConfidential
           placeholder='Логин'
-          error={errors}
+          errors={errors}
           register={register}
         />
           </form>

@@ -7,18 +7,18 @@ import { ErrorIcon, VisibilityIcon, VisibilityOffIcon } from '../icons';
 import cn from 'classnames';
 import { Typography } from '../typography/typography';
 
-const Input = <T extends FieldValues>({
+export const Input = <T extends FieldValues>({
   name,
   placeholder,
   disabled,
-  error,
+  errors,
   register,
   isConfidential = false,
   className,
 }: ICustomInputProps<T>): JSX.Element => {
   const [isTextHidden, setTextIsHidden] = useState<boolean>(isConfidential);
   const labelStyles = cn(styles.input, className, {
-    [styles.input_hasError]: error[name],
+    [styles.input_hasError]: errors[name],
   });
 
   const handleShowPassword = (e: MouseEvent) => {
@@ -45,7 +45,7 @@ const Input = <T extends FieldValues>({
       />
       <span className={styles.input__placeholder}>{placeholder}</span>
 
-      {isConfidential && !error[name] && (
+      {isConfidential && !errors[name] && (
         <button
           className={styles.input__showPassBtn}
           onClick={handleShowPassword}
@@ -56,10 +56,9 @@ const Input = <T extends FieldValues>({
         </button>
       )}
 
-      {error[name] && <ErrorIcon className={styles.input__errorIcon} />}
-      {error[name] && <span className={styles.input__errorMessage}>{error[name]?.message?.toString()}</span>}
+      {errors[name] && <ErrorIcon className={styles.input__errorIcon} />}
+      {errors[name] && <span className={styles.input__errorMessage}>{errors[name]?.message?.toString()}</span>}
     </Typography>
   );
 };
 
-export default Input;
