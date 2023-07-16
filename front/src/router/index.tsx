@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { RootLayout } from '../layouts/root.layout';
+import { RootLayout, loader as rootLoader } from '../layouts/root.layout';
 import { Paths } from '../const/paths';
 import { AnonymousLayout } from '../layouts/anonymous.layout';
 import { ProtectedLayout } from '../layouts/protected.layout';
@@ -11,6 +11,7 @@ export const router = createBrowserRouter([
   {
     path: Paths.MAIN,
     element: <RootLayout />,
+    loader: rootLoader,
     children: [
       {
         path: Paths.MAIN,

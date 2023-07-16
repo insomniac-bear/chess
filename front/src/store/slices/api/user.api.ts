@@ -8,11 +8,12 @@ export const userApi = api.injectEndpoints({
     getMe: builder.mutation<IUserResponse, undefined>({
       query: () => ({
         url: Endpoints.GET_ME,
-        method: 'GET',
+        method: 'POST',
       }),
       async onQueryStarted (arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          console.log(data);
           dispatch(setUser({
             id: Number(data.id),
             name: data.name,
